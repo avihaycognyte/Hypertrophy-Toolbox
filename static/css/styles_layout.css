@@ -1,0 +1,61 @@
+/* Container Layouts */
+.container {
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    max-width: 1400px;
+    width: 95%;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Split Layout */
+.split-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Frame Layouts */
+.unified-frames-container {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.input-frame,
+.action-frame {
+    padding: 1.5rem;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.frame-title {
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #333;
+    font-size: 1rem;
+}
+
+/* Page Header */
+.page-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.header-underline {
+    height: 3px;
+    width: 60px;
+    background: #007bff;
+    margin: 0.5rem auto;
+    border-radius: 2px;
+}
+
+/* Ensure consistent spacing between frames */
+.unified-frames-container + .unified-frames-container {
+    margin-top: 2rem;
+} 

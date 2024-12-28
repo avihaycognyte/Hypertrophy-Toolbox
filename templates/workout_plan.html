@@ -1,0 +1,231 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="page-header">
+        <h1 class="text-center">Workout Plan</h1>
+        <div class="header-underline"></div>
+    </div>
+
+    <!-- Filters for Exercises -->
+    <div class="unified-frames-container">
+        <div class="filters-section collapsible-frame">
+            <div class="frame-header">
+                <div class="filters-title">Filter Exercises</div>
+                <button class="collapse-toggle" aria-expanded="true" title="Toggle Filters Panel">
+                    <i class="fas fa-chevron-up"></i>
+                    <span class="toggle-text">Hide</span>
+                </button>
+            </div>
+            <div class="frame-content">
+                <div class="filters dropdown-group">
+                    <form id="filters-form" class="row gx-4 gy-3">
+                        {% for filter_name, filter_options in filters.items() %}
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <label for="{{ filter_name }}" class="form-label">{{ filter_name.replace('_', ' ').capitalize() }}</label>
+                            <select id="{{ filter_name }}" class="form-select uniform-dropdown filter-dropdown">
+                                <option value="">All</option>
+                                {% for option in filter_options %}
+                                <option value="{{ option }}">{{ option }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        {% endfor %}
+
+                        <!-- Routine Dropdown -->
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <label for="routine" class="form-label">Routine</label>
+                            <select id="routine" class="form-select uniform-dropdown routine-dropdown">
+                                <option value="">Select Routine</option>
+                                {% for env, categories in routineOptions.items() %}
+                                    <optgroup label="{{ env }}" class="environment-group" data-environment="{{ env|lower|replace(' ', '-') }}">
+                                        {% for category_name, category_content in categories.items() %}
+                                            {% if category_content.routines is defined %}
+                                                <!-- Direct routines under environment -->
+                                                <option class="program-header program-{{ category_content.name|lower|replace(' ', '-') }}" 
+                                                        disabled>{{ category_content.name }}</option>
+                                                {% for routine in category_content.routines %}
+                                                    <option class="routine-option" 
+                                                            value="{{ env }} - {{ category_content.name }} - {{ routine }}"
+                                                            data-environment="{{ env }}"
+                                                            data-program="{{ category_content.name }}"
+                                                            data-routine="{{ routine }}"
+                                                            data-program-type="{{ category_content.name|lower|replace(' ', '-') }}"
+                                                            title="{{ category_content.description }}">
+                                                        └─ {{ routine }}
+                                                    </option>
+                                                {% endfor %}
+                                            {% else %}
+                                                <!-- Nested categories -->
+                                                <option class="category-header category-{{ category_name|lower|replace(' ', '-') }}" 
+                                                        disabled>{{ category_name }}</option>
+                                                {% for program_id, program in category_content.items() %}
+                                                    <option class="program-header program-{{ program.name|lower|replace(' ', '-') }}" 
+                                                            disabled>├─ {{ program.name }}</option>
+                                                    {% for routine in program.routines %}
+                                                        <option class="routine-option nested"
+                                                                value="{{ env }} - {{ program.name }} - {{ routine }}"
+                                                                data-environment="{{ env }}"
+                                                                data-category="{{ category_name }}"
+                                                                data-program="{{ program.name }}"
+                                                                data-routine="{{ routine }}"
+                                                                data-program-type="{{ program.name|lower|replace(' ', '-') }}"
+                                                                title="{{ program.description }}">
+                                                            │  └─ {{ routine }}
+                                                        </option>
+                                                    {% endfor %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        {% endfor %}
+                                    </optgroup>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <!-- Exercise Dropdown -->
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <label for="exercise" class="form-label">Exercise</label>
+                            <select id="exercise" class="form-select uniform-dropdown exercise-dropdown">
+                                {% for exercise in exercises %}
+                                {% if exercise %}
+                                <option value="{{ exercise }}">{{ exercise }}</option>
+                                {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Split Layout for Parameters and Actions -->
+    <div class="unified-frames-container mt-4">
+        <div class="split-layout">
+            <div class="action-frame collapsible-frame">
+                <div class="frame-header">
+                    <div class="frame-title">Workout Controls</div>
+                    <button class="collapse-toggle" aria-expanded="true" title="Toggle Controls Panel">
+                        <i class="fas fa-chevron-up"></i>
+                        <span class="toggle-text">Hide</span>
+                    </button>
+                </div>
+                <div class="frame-content">
+                    <div class="horizontal-layout">
+                        <!-- Action Buttons Group -->
+                        <div class="action-buttons-group">
+                            <button id="add-exercise-btn" type="button" class="btn btn-success">
+                                <i class="fas fa-plus"></i> Add Exercise
+                            </button>
+                            <div class="btn-group" role="group" aria-label="Filter controls">
+                                <button id="filter-btn" class="btn btn-primary">
+                                    <i class="fas fa-filter"></i> Apply Filters
+                                </button>
+                                <button id="clear-filters-btn" class="btn btn-outline-secondary">
+                                    <i class="fas fa-times"></i> Clear Filters
+                                </button>
+                            </div>
+                            <div class="btn-group" role="group" aria-label="Export controls">
+                                <a href="/export_to_excel" class="btn btn-export-excel">
+                                    <i class="fas fa-file-excel"></i> Export All Tables
+                                </a>
+                                <button id="export-to-log-btn" class="btn btn-export-log">
+                                    <i class="fas fa-clipboard-list"></i> Export to Workout Log
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Input Fields Group -->
+                        <div class="input-fields-group">
+                            <div class="input-group">
+                                <label for="weight" class="form-label">Weight</label>
+                                <input type="number" id="weight" class="form-control" min="0" value="100">
+                            </div>
+                            <div class="input-group">
+                                <label for="sets" class="form-label">Sets</label>
+                                <input type="number" id="sets" class="form-control" min="1" value="1">
+                            </div>
+                            <div class="input-group">
+                                <label for="rir" class="form-label">RIR</label>
+                                <input type="number" id="rir" class="form-control" min="0" value="2">
+                            </div>
+                            <div class="input-group">
+                                <label for="min_rep_range" class="form-label">Min Rep</label>
+                                <input type="number" id="min_rep_range" class="form-control" min="1" value="3">
+                            </div>
+                            <div class="input-group">
+                                <label for="max_rep_range" class="form-label">Max Rep</label>
+                                <input type="number" id="max_rep_range" class="form-control" min="1" value="5">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Display the Workout Plan -->
+    <div class="workout-plan table-container mt-5">
+        <div class="table-header">
+            <h2 class="text-center">Workout Plan Table</h2>
+            <div class="table-header-underline"></div>
+        </div>
+        <table class="table table-workout">
+            <thead>
+                <tr class="table-header-row">
+                    <th>#</th>
+                    <th>Routine</th>
+                    <th>Exercise</th>
+                    <th>Primary Muscle Group</th>
+                    <th>Secondary Muscle Group</th>
+                    <th>Tertiary Muscle Group</th>
+                    <th>Advanced Isolated Muscles</th>
+                    <th>Utility</th>
+                    <th>Sets</th>
+                    <th>Min Rep Range</th>
+                    <th>Max Rep Range</th>
+                    <th>RIR</th>
+                    <th>Weight</th>
+                    <th>Grips</th>
+                    <th>Stabilizers</th>
+                    <th>Synergists</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="workout_plan_table_body">
+                <!-- Dynamically populated via JavaScript -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize collapse toggles
+    const toggleButtons = document.querySelectorAll('.collapse-toggle');
+    
+    toggleButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const frame = this.closest('.collapsible-frame');
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            
+            // Toggle collapsed state
+            frame.classList.toggle('collapsed');
+            this.setAttribute('aria-expanded', !isExpanded);
+            
+            // Rotate the chevron icon
+            const icon = this.querySelector('i');
+            icon.style.transform = isExpanded ? 'rotate(180deg)' : 'rotate(0deg)';
+            
+            // Adjust table margin if needed
+            const table = document.querySelector('.workout-plan.table-container');
+            if (table) {
+                table.style.transition = 'margin-top 0.3s ease-in-out';
+                table.style.marginTop = frame.classList.contains('collapsed') ? '1rem' : '3rem';
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,153 @@
+/* Table Base Styles */
+.table {
+    margin: 0 auto;
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.table th, 
+.table td {
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #e9ecef;
+    padding: 14px;
+    font-size: 1rem;
+    word-wrap: break-word;
+}
+
+.table th {
+    background: #f7f9fc;
+    font-weight: 700;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.table td {
+    background-color: #ffffff;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f5fb;
+}
+
+/* Table Container */
+.table-container {
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+/* Table Workout Specific */
+.table-workout {
+    margin: 0 auto;
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.table-workout thead {
+    background-color: #f8f9fa;
+}
+
+.table-workout .table-header-row th {
+    background-color: #e9ecef;
+    color: #495057;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    padding: 1rem;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.table-workout tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.table-workout tbody tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+.table-workout tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.table-workout tbody tr:hover {
+    background-color: #e9ecef;
+}
+
+.table-workout td {
+    padding: 0.75rem 1rem;
+    vertical-align: middle;
+    border-bottom: 1px solid #dee2e6;
+}
+
+/* Table Container Enhancement */
+.workout-plan.table-container {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Table Header Styling */
+.table-header {
+    margin-bottom: 1.5rem;
+}
+
+.table-header-underline {
+    height: 3px;
+    width: 60px;
+    background: #007bff;
+    margin: 0.5rem auto;
+    border-radius: 2px;
+}
+
+/* Row Selection */
+.table tbody tr.selected {
+    background-color: rgba(0, 123, 255, 0.1) !important;
+    box-shadow: inset 0 0 0 1px #007bff;
+}
+
+/* Row Hover Animation */
+.table tbody tr {
+    transition: all 0.2s ease-in-out;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Cell Highlight on Edit */
+.table td.editing {
+    padding: 0;
+    background-color: #fff;
+    box-shadow: 0 0 0 2px #007bff;
+}
+
+/* Sortable Headers */
+.table th.sortable {
+    cursor: pointer;
+    position: relative;
+    padding-right: 24px;
+}
+
+.table th.sortable::after {
+    content: "↕";
+    position: absolute;
+    right: 8px;
+    opacity: 0.5;
+}
+
+.table th.sortable.asc::after {
+    content: "↑";
+    opacity: 1;
+}
+
+.table th.sortable.desc::after {
+    content: "↓";
+    opacity: 1;
+} 
