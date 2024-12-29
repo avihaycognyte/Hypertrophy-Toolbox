@@ -1,0 +1,139 @@
+/* Navbar Styles */
+.navbar {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 0 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    min-height: unset;
+    background-color: #212529;  /* Dark background */
+}
+
+/* Navbar items positioning */
+.navbar-nav {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin-top: -4px;
+}
+
+/* Navbar brand */
+.navbar-brand {
+    padding: 0 0.5rem !important;
+    font-size: 0.9rem !important;
+    line-height: 36px !important;
+    height: 36px !important;
+    display: flex !important;
+    align-items: center !important;
+    margin-top: -4px !important;
+    color: #fff !important;  /* White text */
+    position: relative;  /* Add position relative */
+    transition: color 0.3s ease;
+}
+
+/* Brand indicator (same as nav-link indicator) */
+.navbar-brand::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: #dc3545;  /* Red color */
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+/* Active state for brand */
+.navbar-brand.active {
+    color: #fff !important;
+}
+
+.navbar-brand.active::before {
+    transform: scaleX(1);
+}
+
+/* Hover effect for brand */
+.navbar-brand:hover {
+    color: #fff !important;
+}
+
+.navbar-brand:not(.active):hover::before {
+    transform: scaleX(1);
+    background-color: rgba(220, 53, 69, 0.5);  /* Semi-transparent red */
+}
+
+/* Nav links */
+.nav-link {
+    padding: 0 0.5rem !important;
+    font-size: 0.9rem !important;
+    line-height: 36px !important;
+    height: 36px !important;
+    display: flex !important;
+    align-items: center !important;
+    margin-top: -2px !important;
+    position: relative;
+    color: rgba(255, 255, 255, 0.75) !important;  /* Slightly dimmed white */
+    transition: color 0.3s ease;
+}
+
+/* Active tab indicator */
+.nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: #dc3545;  /* Red color */
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+/* Active state */
+.nav-link.active {
+    color: #fff !important;  /* Bright white for active */
+}
+
+.nav-link.active::before {
+    transform: scaleX(1);
+}
+
+/* Hover effects */
+.nav-link:hover {
+    color: #fff !important;
+}
+
+.nav-link:not(.active):hover::before {
+    transform: scaleX(1);
+    background-color: rgba(220, 53, 69, 0.5);  /* Semi-transparent red */
+}
+
+/* Nav item */
+.nav-item {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin-top: -2px;
+}
+
+/* Ensure proper spacing between items */
+.nav-item:not(:last-child) {
+    margin-right: 1rem;
+}
+
+/* Navbar toggler for mobile */
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+} 

@@ -1,0 +1,122 @@
+/* Base Welcome Page Styles */
+.welcome-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    text-align: center;
+}
+
+/* Responsive Typography */
+.welcome-container h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+}
+
+.welcome-container p {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    max-width: 80ch;
+    margin: 0 auto;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(45deg, #2c3e50, #3498db);
+    color: white;
+    padding: clamp(2rem, 5vw, 4rem);
+    border-radius: 1rem;
+    margin-bottom: 3rem;
+    width: clamp(300px, 90%, 1200px);
+}
+
+/* Responsive Breakpoints */
+@media (min-width: 1440px) {
+    .welcome-container {
+        padding: 3rem;
+    }
+    
+    .hero-section {
+        padding: 3rem 4rem;
+    }
+}
+
+@media (min-width: 2560px) {
+    .welcome-container {
+        padding: 4rem;
+    }
+    
+    .hero-section {
+        padding: 4rem 5rem;
+    }
+}
+
+/* Guide Section Styles */
+.app-guide {
+    background-color: #f8f9fa;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+.guide-section {
+    margin-bottom: 3rem;
+}
+
+.section-title {
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.guide-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    height: 100%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.guide-card h4 {
+    color: #3498db;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.guide-list {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.guide-list li {
+    margin-bottom: 0.8rem;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.guide-list li:last-child {
+    margin-bottom: 0;
+}
+
+.guide-list strong {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .app-guide {
+        padding: 1rem;
+    }
+    
+    .guide-card {
+        padding: 1rem;
+    }
+} 

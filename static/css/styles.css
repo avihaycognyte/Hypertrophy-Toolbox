@@ -1,0 +1,192 @@
+/* Base and Utilities */
+@import "styles_general.css";
+@import "styles_utilities.css";
+
+/* Layout and Structure */
+@import "styles_layout.css";
+@import "styles_responsive.css";
+
+/* Core Components */
+@import "styles_buttons.css";
+@import "styles_forms.css";
+@import "styles_tables.css";
+@import "styles_cards.css";
+@import "styles_dropdowns.css";
+
+/* UI Components */
+@import "styles_navbar.css";
+@import "styles_notifications.css";
+@import "styles_chat.css";
+@import "styles_muscle_groups.css";
+@import "styles_tooltips.css";
+@import "styles_filters.css";
+@import "styles_volume.css";
+@import "styles_frames.css";
+@import "styles_action_buttons.css";
+@import "styles_modals.css";
+
+/* Page Specific */
+@import "styles_welcome.css";
+@import "styles_science.css";
+@import "styles_error.css";
+@import "workout_log.css";
+@import "volume_indicators.css";
+
+/* Container for unified frames */
+.unified-frames-container {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Collapsible frame styling */
+.collapsible-frame {
+    position: relative;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Frame header styling */
+.frame-header {
+    position: relative;
+    background: #f8f9fa;
+    padding: 0.75rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Frame content */
+.frame-content {
+    position: relative;
+    z-index: 1;
+    background: #fff;
+    padding: 1rem;
+    transition: all 0.3s ease-in-out;
+    flex: 1;
+}
+
+/* Collapse toggle button */
+.collapse-toggle {
+    background: none;
+    border: none;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #6c757d;
+    transition: color 0.2s;
+}
+
+.collapse-toggle:hover {
+    color: #495057;
+}
+
+.collapse-toggle i {
+    transition: transform 0.3s ease;
+}
+
+.collapsible-frame.collapsed .collapse-toggle i {
+    transform: rotate(180deg);
+}
+
+/* Toggle button text */
+.collapse-toggle .toggle-text {
+    display: inline-block;
+    min-width: 40px; /* Ensure consistent width between Show/Hide */
+}
+
+.collapsible-frame.collapsed .collapse-toggle .toggle-text {
+    content: "Show";
+}
+
+/* Table container */
+.table-container {
+    position: relative;
+    z-index: 1;
+    background: #fff;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+/* Split layout for frames */
+.split-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Action frame specific */
+.action-frame {
+    z-index: 2;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.action-frame .frame-header {
+    z-index: 10;
+}
+
+.action-frame.collapsed + .workout-plan.table-container {
+    margin-top: 2rem;
+}
+
+/* Filters section specific styling */
+.filters-section {
+    z-index: 3;
+}
+
+.filters-section .frame-header {
+    z-index: 11;
+}
+
+/* Collapsed state styling */
+.collapsible-frame.collapsed {
+    margin-bottom: 0.5rem;
+    min-height: 60px;
+}
+
+.collapsible-frame.collapsed .frame-content {
+    display: none;
+}
+
+.collapsible-frame.collapsed .frame-header {
+    box-shadow: none;
+    border-bottom: none;
+    padding: 1rem;
+}
+
+/* Action frame specific collapsed state */
+.action-frame.collapsed {
+    min-height: 70px;
+    padding-bottom: 0.5rem;
+}
+
+.action-frame.collapsed .frame-header {
+    padding: 1.25rem 1rem;
+}
+
+/* Ensure navbar stays on top */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* Main content padding to account for fixed navbar */
+main {
+    padding-top: 60px;
+}
