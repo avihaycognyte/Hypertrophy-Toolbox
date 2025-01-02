@@ -1,0 +1,154 @@
+.volume-splitter-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.volume-inputs {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.volume-input-group {
+    margin-bottom: 1rem;
+}
+
+.status-optimal {
+    color: #28a745;
+}
+
+.status-low {
+    color: #ffc107;
+}
+
+.status-high {
+    color: #dc3545;
+}
+
+.status-excessive {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+/* AI Suggestions Styling */
+.suggestion-card {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid;
+}
+
+.suggestion-warning {
+    background-color: #fff3cd;
+    border-left-color: #ffc107;
+}
+
+.suggestion-info {
+    background-color: #cff4fc;
+    border-left-color: #0dcaf0;
+}
+
+.suggestion-suggestion {
+    background-color: #d1e7dd;
+    border-left-color: #198754;
+}
+
+/* History Section Styling */
+.volume-history-section {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+[data-theme='dark'] .volume-history-section {
+    background-color: #212529;
+}
+
+.volume-history-section tr.active {
+    background-color: rgba(40, 167, 69, 0.1);
+}
+
+[data-theme='dark'] .volume-history-section tr.active {
+    background-color: rgba(40, 167, 69, 0.2);
+}
+
+.load-plan {
+    transition: all 0.3s ease;
+}
+
+.load-plan:hover {
+    transform: scale(1.05);
+}
+
+/* Add loading state styles */
+.loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1em;
+    height: 1em;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 0.6s linear infinite;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Add these dark mode styles */
+[data-theme='dark'] .results-section {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+[data-theme='dark'] .results-section table {
+    color: var(--text-primary);
+}
+
+[data-theme='dark'] .results-section thead th {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+[data-theme='dark'] .results-section tbody tr {
+    background-color: var(--card-bg);
+}
+
+[data-theme='dark'] .results-section tbody tr:nth-of-type(odd) {
+    background-color: var(--table-stripe);
+}
+
+[data-theme='dark'] .results-section td,
+[data-theme='dark'] .results-section th {
+    border-color: var(--border-color);
+}
+
+[data-theme='dark'] .results-section tbody tr:hover {
+    background-color: var(--hover-bg);
+}
+
+/* Status colors in dark mode */
+[data-theme='dark'] .status-optimal {
+    color: #4caf50;  /* Brighter green for dark mode */
+}
+
+[data-theme='dark'] .status-low {
+    color: #ffd700;  /* Brighter yellow for dark mode */
+}
+
+[data-theme='dark'] .status-high,
+[data-theme='dark'] .status-excessive {
+    color: #ff6b6b;  /* Brighter red for dark mode */
+} 

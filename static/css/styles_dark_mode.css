@@ -1,0 +1,154 @@
+/* Dark Mode Styles */
+[data-theme="dark"] {
+    /* Base Colors */
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --text-primary: #e0e0e0;
+    --text-secondary: #b0b0b0;
+    --border-color: #404040;
+    --card-bg: #2d2d2d;
+    --input-bg: #333333;
+    --table-stripe: #252525;
+    --hover-bg: #3d3d3d;
+    --test-color: red;
+}
+
+/* Base Elements */
+[data-theme="dark"] body {
+    background-color: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Navbar Specific */
+[data-theme="dark"] .navbar {
+    background-color: var(--bg-secondary) !important;
+    border-bottom: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .navbar-dark .navbar-nav .nav-link {
+    color: var(--text-primary) !important;
+}
+
+/* Cards and Containers */
+[data-theme="dark"] .card,
+[data-theme="dark"] .container,
+[data-theme="dark"] .container-fluid,
+[data-theme="dark"] .modal-content,
+[data-theme="dark"] .dropdown-menu {
+    background-color: var(--card-bg) !important;
+    border-color: var(--border-color);
+}
+
+/* Frames and Sections */
+[data-theme="dark"] .collapsible-frame,
+[data-theme="dark"] .frame-content,
+[data-theme="dark"] .frame-header,
+[data-theme="dark"] .filters-section,
+[data-theme="dark"] .summary-frame,
+[data-theme="dark"] .workout-log-frame {
+    background-color: var(--card-bg) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* Tables */
+[data-theme="dark"] .table {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .table thead th {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .table tbody tr {
+    background-color: var(--card-bg) !important;
+}
+
+[data-theme="dark"] .table tbody tr:nth-of-type(odd) {
+    background-color: var(--table-stripe) !important;
+}
+
+[data-theme="dark"] .table td,
+[data-theme="dark"] .table th {
+    border-color: var(--border-color) !important;
+}
+
+/* Form Elements */
+[data-theme="dark"] .form-control,
+[data-theme="dark"] .form-select,
+[data-theme="dark"] .input-group-text {
+    background-color: var(--input-bg) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Buttons */
+[data-theme="dark"] .btn {
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .btn-outline-secondary {
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+/* Headers and Text */
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] h6,
+[data-theme="dark"] .card-title {
+    color: var(--text-primary) !important;
+}
+
+/* Transitions */
+body,
+.navbar,
+.card,
+.table,
+.form-control,
+.btn {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Dark Mode Toggle Button */
+#darkModeToggle {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+#darkModeToggle i,
+#darkModeToggle span {
+    color: #0d6efd !important;
+}
+
+#darkModeToggle:hover {
+    opacity: 0.8;
+}
+
+/* Volume Indicators in Dark Mode */
+[data-theme="dark"] .volume-indicator {
+    border: 1px solid var(--border-color);
+}
+
+/* Welcome Page in Dark Mode */
+[data-theme="dark"] .welcome-container {
+    background-color: var(--bg-primary);
+}
+
+[data-theme="dark"] .hero-section {
+    background: linear-gradient(45deg, #1a1a1a, #2d2d2d);
+}
+
+/* Add this somewhere visible to test */
+[data-theme="dark"] .navbar-brand {
+    color: var(--test-color) !important;
+} 
