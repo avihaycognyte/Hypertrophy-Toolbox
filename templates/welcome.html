@@ -1,0 +1,292 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="welcome-container">
+    <!-- Hero Section -->
+    <div class="hero-section text-center mb-5">
+        <h1 class="display-4">Welcome to Hypertrophy Toolbox</h1>
+        <p class="lead">Your intelligent companion for science-based muscle building</p>
+    </div>
+
+    <!-- Features Grid -->
+    <div class="features-grid row g-4 mb-5">
+        <!-- Workout Planner -->
+        <div class="col-md-6 col-lg-4">
+            <div class="feature-card card h-100">
+                <div class="card-body">
+                    <h3 class="card-title">Workout Planner</h3>
+                    <p class="card-text">
+                        Create customized workout routines for different splits:
+                        <ul>
+                            <li>Push-Pull-Legs</li>
+                            <li>Upper-Lower</li>
+                            <li>Full Body</li>
+                        </ul>
+                        Choose exercises based on muscle groups, equipment, and difficulty levels.
+                    </p>
+                    <a href="{{ url_for('workout_plan.workout_plan') }}" class="btn btn-primary">Plan Your Workout</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Tracker -->
+        <div class="col-md-6 col-lg-4">
+            <div class="feature-card card h-100">
+                <div class="card-body">
+                    <h3 class="card-title">Progress Tracker</h3>
+                    <p class="card-text">
+                        Log your sets, reps, and weights to monitor growth over time.
+                        Track your progressive overload and performance trends.
+                    </p>
+                    <a href="{{ url_for('workout_log.workout_log') }}" class="btn btn-primary">Track Progress</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analytics Dashboard -->
+        <div class="col-md-6 col-lg-4">
+            <div class="feature-card card h-100">
+                <div class="card-body">
+                    <h3 class="card-title">Analytics Dashboard</h3>
+                    <p class="card-text">
+                        Visualize your progress with:
+                        <ul>
+                            <li>Weekly summaries</li>
+                            <li>Per session analysis</li>
+                            <li>Volume and intensity tracking</li>
+                        </ul>
+                    </p>
+                    <div class="btn-group">
+                        <a href="{{ url_for('weekly_summary.weekly_summary') }}" class="btn btn-primary">Weekly Summary</a>
+                        <a href="{{ url_for('session_summary.session_summary') }}" class="btn btn-primary">Session Summary</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exercise Library -->
+        <div class="col-md-6 col-lg-4">
+            <div class="feature-card card h-100">
+                <div class="card-body">
+                    <h3 class="card-title">Exercise Library</h3>
+                    <p class="card-text">
+                        Browse an extensive library of exercises with detailed muscle activation data.
+                        Filter exercises by:
+                        <ul>
+                            <li>Primary muscle groups</li>
+                            <li>Secondary muscle groups</li>
+                            <li>Tertiary muscle groups</li>
+                        </ul>
+                    </p>
+                    <a href="{{ url_for('workout_plan.workout_plan') }}#exercise-library" class="btn btn-primary">Explore Exercises</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hypertrophy Insights -->
+        <div class="col-md-6 col-lg-4">
+            <div class="feature-card card h-100">
+                <div class="card-body">
+                    <h3 class="card-title">Hypertrophy Insights</h3>
+                    <p class="card-text">
+                        Science-based recommendations for:
+                        <ul>
+                            <li>Volume optimization</li>
+                            <li>Intensity management</li>
+                            <li>Recovery strategies</li>
+                        </ul>
+                    </p>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#insightsModal">Learn More</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Assistant -->
+        <div class="col-md-6 col-lg-4">
+            <div class="feature-card card h-100">
+                <div class="card-body">
+                    <h3 class="card-title">AI Assistant</h3>
+                    <p class="card-text">
+                        Let our AI guide you in:
+                        <ul>
+                            <li>Fine-tuning your plan</li>
+                            <li>Adjusting volume and frequency</li>
+                            <li>Optimizing exercise selection</li>
+                        </ul>
+                    </p>
+                    <button class="btn btn-primary" id="ai-help-button">Get AI Help</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- App Guide -->
+    <div class="app-guide mt-5">
+        <h2 class="text-center mb-4">How to Use Hypertrophy Toolbox</h2>
+        
+        <!-- Exercise Filtering Section -->
+        <div class="guide-section mb-4">
+            <h3 class="section-title">Exercise Filtering</h3>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="guide-card">
+                        <h4>Muscle Group Filters</h4>
+                        <ul class="guide-list">
+                            <li><strong>Primary Muscle Group:</strong> Filter exercises by the main muscle group activated during the selected exercise.</li>
+                            <li><strong>Secondary Muscle Group:</strong> Filter exercises by the secondary muscle group, which is also activated but not the primary focus.</li>
+                            <li><strong>Tertiary Muscle Group:</strong> Filter exercises by the tertiary muscle group, typically stabilizers, which have a minor impact.</li>
+                            <li><strong>Advanced Isolated Muscles:</strong> Use advanced filtering to target exercises by the scientific names of isolated muscle groups.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="guide-card">
+                        <h4>Exercise Properties</h4>
+                        <ul class="guide-list">
+                            <li><strong>Force:</strong> Filter exercises by force type, useful for balancing push-pull-legs programs.</li>
+                            <li><strong>Equipment:</strong> Filter exercises based on available or preferred equipment.</li>
+                            <li><strong>Mechanic:</strong> Filter by movement type—isolation (single joint) or compound (multiple joints).</li>
+                            <li><strong>Utility:</strong> Filter by Auxiliary (complementary) or Basic (core) exercises.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="guide-card">
+                        <h4>Advanced Filters</h4>
+                        <ul class="guide-list">
+                            <li><strong>Grips:</strong> Filter exercises based on grip position used during execution.</li>
+                            <li><strong>Stabilizers:</strong> Filter by stabilizer muscles activated.</li>
+                            <li><strong>Synergists:</strong> Filter by muscles that assist primary movers in joint actions.</li>
+                            <li><strong>Difficulty:</strong> Filter based on exercise technique complexity.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Workout Controls Section -->
+        <div class="guide-section mb-4">
+            <h3 class="section-title">Workout Controls</h3>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="guide-card">
+                        <h4>Basic Controls</h4>
+                        <ul class="guide-list">
+                            <li><strong>Add Exercise:</strong> Add selected exercise to your workout plan after completing required inputs.</li>
+                            <li><strong>Apply Filters:</strong> Apply selected filters to narrow down exercise options.</li>
+                            <li><strong>Clear Filters:</strong> Reset all filters to default state.</li>
+                            <li><strong>Export All Tables:</strong> Download all data to Excel.</li>
+                            <li><strong>Export to Workout Log:</strong> Transfer workout plan to log for progress tracking.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="guide-card">
+                        <h4>Exercise Parameters</h4>
+                        <ul class="guide-list">
+                            <li><strong>Weight:</strong> Specify the weight for the selected exercise.</li>
+                            <li><strong>Sets:</strong> Specify the number of sets to perform.</li>
+                            <li><strong>RIR (Reps In Reserve):</strong> Number of reps left in the 'tank' (0-10, where 0 is failure).</li>
+                            <li><strong>RPE (Rate of Perceived Exertion):</strong> Exercise intensity scale (1-10, where 10 is maximum effort).</li>
+                            <li><strong>Min/Max Rep:</strong> Set the target repetition range for the exercise.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Science Section -->
+    <div class="science-section mb-5">
+        <h2 class="text-center mb-4">The Science of Hypertrophy Made Simple</h2>
+        <div class="developer-signature text-center">
+            <p>Developed, planned, designed By: <span class="developer-name">Yaaqov Avihai Shai</span></p>
+        </div>
+        <!-- Science content here -->
+    </div>
+</div>
+
+<!-- Insights Modal -->
+<div class="modal fade" id="insightsModal" tabindex="-1" aria-labelledby="insightsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="insightsModalLabel">Hypertrophy Science & Insights</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h4>Key Training Principles for Hypertrophy</h4>
+                <h5>1. Choose the Right Rep Range</h5>
+                <p>All rep ranges from 5–30 reps can build muscle effectively if you apply progressive overload and train close to failure.</p>
+                
+                <div class="mb-4">
+                    <h6>Low Reps (6–8):</h6>
+                    <ul>
+                        <li>Best For: Compound lifts (e.g., squats, bench press)</li>
+                        <li>Benefits: Heavier loads; quicker fatigue</li>
+                    </ul>
+                    
+                    <h6>Moderate Reps (8–12):</h6>
+                    <ul>
+                        <li>Best For: A versatile range for both compound and isolation movements</li>
+                        <li>Benefits: Balances mechanical tension and metabolic stress</li>
+                    </ul>
+                    
+                    <h6>High Reps (15–30):</h6>
+                    <ul>
+                        <li>Best For: Isolation exercises or smaller muscle groups</li>
+                        <li>Benefits: Lower joint strain; emphasizes the "pump" effect</li>
+                    </ul>
+                </div>
+                
+                <h5>2. Optimal Training Volume</h5>
+                <ul>
+                    <li>10–20 sets per muscle group per week</li>
+                    <li>Spread across 2–4 sessions per week</li>
+                </ul>
+                
+                <h5>3. Recovery & Nutrition</h5>
+                <ul>
+                    <li>Protein: 1.6–2.2g per kg of bodyweight</li>
+                    <li>Sleep: 7-9 hours per night</li>
+                    <li>Rest between sets: 1-3 minutes</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Under Construction Toast -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="constructionToast" class="toast align-items-center text-white bg-warning border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                <i class="fas fa-hard-hat me-2"></i>
+                AI Assistant feature is currently under development. Coming soon!
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+
+<!-- Remove or comment out the AI Assistant Modal -->
+<!-- <div class="modal fade" id="aiAssistantModal"... -->
+
+<!-- Add this script at the end of the file -->
+<script>
+document.getElementById('ai-help-button').addEventListener('click', function() {
+    const toast = new bootstrap.Toast(document.getElementById('constructionToast'));
+    toast.show();
+});
+
+// Remove or comment out the openAIAssistant function
+// function openAIAssistant() { ... }
+</script>
+
+{% endblock %} 
